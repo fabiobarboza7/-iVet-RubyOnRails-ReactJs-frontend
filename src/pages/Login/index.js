@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
+
 import { Form, Input } from '@rocketseat/unform';
-import schema from './schema';
+
 import { userLogin } from '../../services/sessions.service';
 import { Store } from '../../store';
 import { userStatus } from '../../store/modules/users/actions';
+import schema from './schema';
 
 export default function Login() {
   const [, dispatch] = useContext(Store);

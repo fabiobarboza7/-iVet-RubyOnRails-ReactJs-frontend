@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
+
 import { Form, Input } from '@rocketseat/unform';
-import schema from './schema';
+
 import { userRegistration } from '../../services/registrations.service';
-import { userStatus } from '../../store/modules/users/actions';
 import { Store } from '../../store';
+import { userStatus } from '../../store/modules/users/actions';
+import schema from './schema';
 // import { Container } from './styles';
 
 export default function Registration() {
