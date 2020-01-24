@@ -16,6 +16,8 @@ export default function Login() {
   const [, dispatch] = useContext(Store);
   async function handleSubmit(data) {
     const response = await userLogin({ user: { ...data } });
+    if (response) {
+    }
     dispatch(userStatus({ data: response }));
   }
 
