@@ -1,31 +1,41 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
-// import { store } from '~/store';
+import { checkLoginStatus } from '../services/checkLoginStatus.service';
+import { Store } from '../store';
+import { userLoggedIn } from '../store/modules/users/actions';
 
 export default function RouteWrapper({
   component: Component,
-  isPrivate,
-  isLocked,
+  isPrivate = false,
   ...rest
 }) {
-  // const { signed, nivel } = store.getState().auth;
+  const [state, dispatch] = useContext(Store);
+  const [signed, setSigned] = useState(false);
+  useEffect(() => {
+    async function checkLoginStatusService() {
+      const { logged_in } = await checkLoginStatus();
+      dispatch(userLoggedIn({ logged_in }));
+    }
 
-  // if (!signed && isPrivate) {
-  //   return <Redirect to="/" />;
-  // }
+    checkLoginStatusService();
+  }, [dispatch]);
 
-  // if (signed && !isPrivate) {
-  //   return <Redirect to="/dashboard" />;
-  // }
+  useEffect(() => {
+    setSigned(state.user.logged_in);
+  }, [state]);
 
-  // if (isLocked.length && !isLocked.includes(nivel)) {
-  //   return <Redirect to="/" />;
-  // }
+  if (!signed && isPrivate) {
+    return <Redirect to="/" />;
+  }
 
-  return <Route {...rest} render={props => <Component {...props} />} />;
+  if (signed && !isPrivate) {
+    return <Redirect to="/dashboard" />;
+  }
+
+  return <Route {...rest} component={Component} />;
 }
 
 RouteWrapper.propTypes = {
