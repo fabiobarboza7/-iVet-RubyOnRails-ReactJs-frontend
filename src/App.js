@@ -4,12 +4,17 @@ import { Router } from 'react-router-dom';
 import Routes from './routes';
 import history from './services/history';
 import GlobalStyle from './styles/global';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function App() {
+function App() {
   return (
-    <Router history={history}>
-      <Routes />
+    <>
+      <Router history={history}>
+        <Routes />
+      </Router>
       <GlobalStyle />
-    </Router>
+    </>
   );
 }
+
+export default App;
