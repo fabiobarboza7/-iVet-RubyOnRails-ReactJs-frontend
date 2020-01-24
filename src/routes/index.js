@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
 import { Switch } from 'react-router-dom';
 
-import Dashboard from '../pages/Dashboard';
 import Home from '../pages/Home';
+import Root from '../pages/Root';
 import { Store } from '../store';
 import modules from '../store/modules';
 import Route from './Route';
@@ -15,8 +15,8 @@ export default function Routes() {
   return (
     <Provider value={store}>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/dashboard" component={Dashboard} isPrivate />
+        <Route exact path="/" component={Root} />
+        <Route path="/home" component={Home} isPrivate />
       </Switch>
     </Provider>
   );
