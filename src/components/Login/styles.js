@@ -45,17 +45,19 @@ export const LoginButton = styled.button`
   border: transparent;
   transition: 1s;
   width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     letter-spacing: 1px;
   }
 `;
 
+export const LoginButtonName = styled.p``;
+
 export const LoginDogIcon = styled(FaDog).attrs({
   size: 20,
 })`
-  position: absolute;
-  top: 11px;
-  left: 240px;
-  margin-right: 50px;
+  margin-left: 10px;
 `;

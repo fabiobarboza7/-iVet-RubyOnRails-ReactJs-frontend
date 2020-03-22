@@ -10,14 +10,13 @@ import {
   LoginInput,
   LoginButton,
   LoginDogIcon,
+  LoginButtonName,
 } from './styles';
 
 export default function Login() {
   const [, dispatch] = useContext(Store);
   async function handleSubmit(data) {
     const response = await userLogin({ user: { ...data } });
-    if (response) {
-    }
     dispatch(userStatus({ data: response }));
   }
 
@@ -38,8 +37,10 @@ export default function Login() {
         />
 
         <LoginButton type="submit">
-          <LoginDogIcon />
-          Sign In
+          <LoginButtonName>
+            Sign In
+            <LoginDogIcon />
+          </LoginButtonName>
         </LoginButton>
       </LoginForm>
     </Container>
